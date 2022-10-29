@@ -2,6 +2,7 @@ import numpy as np
 import math
 import pygame
 
+TILE_SIZE = 50
 class Tile:
 	__x = .0
 	__y = .0
@@ -19,7 +20,7 @@ class Tile:
 
 	def draw(self, gameDisplay, scroll) -> None:
 		# gameDisplay.blit(self.__image, (self.__x, self.__y))
-		pygame.draw.rect(gameDisplay, self.__color, pygame.Rect(self.__x*50 + scroll["x"], self.__y*50 + scroll["y"], self.__width, self.__height))
+		pygame.draw.rect(gameDisplay, self.__color, pygame.Rect(self.__x*TILE_SIZE - scroll["x"], self.__y*TILE_SIZE - scroll["y"], self.__width, self.__height))
 
 
 if __name__ == "__main__":

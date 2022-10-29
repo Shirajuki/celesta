@@ -50,16 +50,13 @@ class Agent:
 		## Gravitation
 		self.__vy += self.__ay
 
-		## Collision
-
+		## Force
 		if self.__movement["right"]:
 			self.__vx = self.__speed
 			self.change_facing("right")
-			self.__facing = 'right'
 		if self.__movement["left"]:
 			self.__vx = -self.__speed
 			self.change_facing("left")
-			self.__facing = "left"
 		if self.__movement["down"]:
 			self.__vy = self.__speed
 		if self.__movement["up"]:
@@ -79,11 +76,12 @@ class Agent:
 		self.reset()
 		
 	def draw(self, gameDisplay, scroll) -> None:
-		gameDisplay.blit(self.__image, (200, 200))#self.__x + scroll["x"], self.__y + scroll["y"]))
+		gameDisplay.blit(self.__image, (self.__x - scroll["x"], self.__y - scroll["y"]))
 
 	def change_facing(self, facing) -> None:
 		if self.__facing != facing:
 			self.__image = pygame.transform.flip(self.__image, True, False)
+		self.__facing = facing
 
 	def get_location(self) -> tuple: 
 		return self.__x, self.__y
